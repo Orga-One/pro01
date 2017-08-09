@@ -5,6 +5,7 @@
         <big-img v-if="showImg" @clickit="viewImg" :imgSrc="imgSrc"></big-img>
         <h1>HI Jason </h1>
         <h2>Hey Man!</h2>
+        <h3>yes,congratulations!</h3>
     </div>
 
 </template>

@@ -4,6 +4,7 @@
         <!-- 放大图片 -->
         <big-img v-if="showImg" @clickit="viewImg" :imgSrc="imgSrc"></big-img>
         <h1>HI Jason </h1>
+        <h2>Hey Man!</h2>
     </div>
 
 </template>

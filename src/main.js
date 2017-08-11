@@ -1,19 +1,26 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import router from './router'
-import store from './store'
+import VueRouter from 'vue-router'
 
-Vue.config.productionTip = false
+// 作为Vue的插件
+Vue.use(VueRouter)
 
-import '@/assets/css/select.css'
-
-/* eslint-disable no-new */
+import App from './App' // 引入模板
+import home from '@/components/Home'
+// 配置路由
+var router = new VueRouter ({ // 得到一个路由实例
+              routes: [
+                {
+                  path:'/',
+                  component:home
+                }
+              ]
+            })
+//启动应用
 new Vue({
-  el: '#app',
-  router,
-  store, // 注入实例中后就可以进行整个应用的状态管理
-  template: '<App/>',
-  components: { App }
+  el: "#app",
+  router, // 注入路由实例
+  template: '<App />',
+  components: {
+    App
+  }
 })

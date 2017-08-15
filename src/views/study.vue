@@ -1,6 +1,6 @@
-<template>
-  <div>
-    我是首页 hihiho
+<template lang="html">
+  <div class="">
+    good good study !!
   </div>
 </template>
 

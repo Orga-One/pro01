@@ -1,6 +1,7 @@
-<template>
+<template lang="html">
   <div>
-    我是首页 hihiho
+    文档
+    <p id="abc" style="height:200px;">定位到这里</p>
   </div>
 </template>
 

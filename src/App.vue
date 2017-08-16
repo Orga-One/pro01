@@ -18,21 +18,25 @@
           <router-link to="/user">user</router-link>
         </li>
       </ul>
-    <router-view name="slider" style="width:100px;height:200px;float:left;border:1px solid green;margin-top:50px"></router-view>
-    <router-view  class="center" style="width:300px;height:200px;border:1px solid yellow;margin:50px auto;"></router-view>
+    <!-- <router-view name="slider" style="width:100px;height:200px;float:left;border:1px solid green;margin-top:50px"></router-view> -->
+    <!--动画的使用  -->
+    <!-- mode:in-out out-in 过渡模式 -->
+    <transition  name="right">
+        <router-view  class="center" style="width:100%;height:100%;"></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'app',
-  created(){
-    axios({
-      method:'get',
-      url:''
-    })
-  },
+  // created(){
+  //   axios({
+  //     method:'get',
+  //     url:''
+  //   })
+  // },
   data(){
     return {
       index: '/home'
@@ -59,6 +63,9 @@ export default {
 }
 .center{
   text-align: center;
+  position:absolute;
+  left: 0;
+  top: 318px;
 }
 .firstGrade {
   font-size:16px;
@@ -72,5 +79,41 @@ export default {
   float:left;
   margin-right:15px;
   width:300px;
+}
+.v-enter{
+  opacity:0;
+}
+.v-enter-to{
+  opacity:1;
+}
+.v-enter-active{
+  transition: 1s;
+}
+.v-leave{
+  opacity: 1;
+}
+.v-leave-to{
+  opacity: 0;
+}
+.v-leave-active{
+  transition: 1s;
+}
+.left-enter{
+  transform: translateX(100%);
+}
+.left-enter-active,.left-leave-active{
+  transition:1s;
+}
+.left-leave-to{
+  transform: translateX(-100%);
+}
+.right-enter{
+  transform: translateX(-100%);
+}
+.right-enter-active,.right-leave-active{
+  transition:1s;
+}
+.right-leave-to{
+  transform: translateX(100%);
 }
 </style>

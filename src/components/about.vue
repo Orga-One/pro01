@@ -28,6 +28,13 @@ export default {
     next((vm) =>{
       vm.test='改变了'
     })
+  },
+  beforeRouteUpdate(to,from,next){ //切换二级导航的时候触发
+    next();
+    console.log("beforeRouteUpdate");
+  },
+  beforeRouteLeave(to,from,next){ //当导航里的操作执行完毕要离开导航的时候执行的操作
+    next();
   }
 }
 </script>

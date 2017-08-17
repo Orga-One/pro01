@@ -9,7 +9,7 @@
             <router-link to="/" event="mouseover" exact>Home</router-link>
         </li>
         <li>
-          <router-link :to="{path:'/document#abc'}" active-class="activeClass">document</router-link>
+          <router-link :to="{path:'/document'}" active-class="activeClass">document</router-link>
         </li>
         <li>
           <router-link to="/about">about</router-link>
@@ -21,25 +21,54 @@
     <!-- <router-view name="slider" style="width:100px;height:200px;float:left;border:1px solid green;margin-top:50px"></router-view> -->
     <!--动画的使用  -->
     <!-- mode:in-out out-in 过渡模式 -->
-    <transition  name="right">
+    <transition  :name="names">
         <router-view  class="center" style="width:100%;height:100%;"></router-view>
     </transition>
+    <p>当前导航下标{{$route.meta.index}}</p>
+    <input type="button" name="" value="退后" @click="backHandel">
+    <input type="button" name="" value="前进" @click="forwardHandel">
+    <input type="button" name="" value="控制前进/后退步数" @click="goHandel">
+    <input type="button" name="" value="往历史记录栈中添加一条" @click="pushHandel">
+    <input type="button" name="" value="替换历史记录栈中当前一条" @click="replaceHandel">
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
 export default {
   name: 'app',
-  // created(){
-  //   axios({
-  //     method:'get',
-  //     url:''
-  //   })
-  // },
+  watch:{
+    $route(to ,from){
+      console.log(to.meta.index) //目标导航的下标
+      console.log(from.meta.index)  // 离开导航下标
+      if(to.meta.index<from.meta.index){
+        this.names="right";
+      }else{
+        this.names="left";
+      }
+    }
+  },
   data(){
     return {
-      index: '/home'
+      index: '/home',
+      names: 'left'
+    }
+  },
+  methods:{
+    backHandel(){
+      this.$router.back()
+    },
+    forwardHandel(){
+      this.$router.forward()
+    },
+    goHandel(){
+      this.$router.go(-3)// 数字为0时 刷新页面
+    },
+    pushHandel(){
+      // this.$router.push('/document') //写目标链接
+      this.$router.push({path:'/document'})
+    },
+    replaceHandel(){
+      this.$router.replace('/about')
     }
   }
 }
@@ -65,7 +94,9 @@ export default {
   text-align: center;
   position:absolute;
   left: 0;
-  top: 318px;
+  top: 400px;
+  font-size:18px;
+  font-weight:bold;
 }
 .firstGrade {
   font-size:16px;
